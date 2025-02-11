@@ -22,15 +22,15 @@ The model needs to be in this projects `models` directory. You can finetune and/
 
 ### Windows
 1. Ensure you have CUDA setup properly
-2. Create and activate the virtual environment. Replace the `pytorch-cuda` version with the latest version before the version stated on your CUDA (found using command `nvidia-smi`). For example, I'm using `CUDA 12.6`, but the latest `pytorch-cuda` is for `CUDA 12.4`, so use `pytorch-cuda==12.4`
+2. Create and activate the virtual environment. Replace the `pytorch-cuda` version with the latest version before the version stated on your CUDA (found using command `nvidia-smi`). For example, I'm using `CUDA 12.6`, but the latest `pytorch-cuda` is for `CUDA 12.4`, so use `pytorch-cuda=12.4`
 ```
 conda create -n jaison-comp-t2t-unsloth python=3.12 pytorch-cuda=12.4 pytorch cudatoolkit -c pytorch -c nvidia -y
 conda activate jaison-comp-t2t-unsloth
 ```
-3. Install the remaining dependencies **in the same order**
+3. Install the remaining dependencies **in the same order**. You will need the machine-specific command to install [xformers](https://github.com/facebookresearch/xformers).
 ```
 pip install unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git
-pip install ...(stuff for xformers)
+# install command for xformers like: pip install -U xformers --index-url https://download.pytorch.org/whl/cu126
 pip install --no-deps trl peft accelerate bitsandbytes
 pip install -I -r requirements.txt
 ```
@@ -42,11 +42,11 @@ pip install -I -r requirements.txt
 python -m venv venv
 source venv/bin/activate
 ```
-3. Install the remaining dependencies. Find the command to install the correct pytorch packages for your system from [their website](https://pytorch.org/get-started/locally/). Also find the command to install the correct `xformers` package for your system from [this repo](https://github.com/facebookresearch/xformers).
+3. Install the remaining dependencies **in the same order**. Find the command to install the correct pytorch packages for your system from [their website](https://pytorch.org/get-started/locally/). Also find the command to install the correct `xformers` package for your system from [this repo](https://github.com/facebookresearch/xformers).
 ```
-pip install ...(stuff for pytorch)
+# install command for pytorch like: pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cu126
 pip install unsloth[colab-new] @ git+https://github.com/unslothai/unsloth.git
-pip install ...(stuff for xformers)
+# install command for xformers like: pip install -U xformers --index-url https://download.pytorch.org/whl/cu126
 pip install --no-deps trl peft accelerate bitsandbytes
 pip install -I -r requirements.txt
 ```
@@ -59,7 +59,7 @@ python ./src/main.py --port=5000
 If it runs, it should be fine.
 
 ## Configuration
-There is no configuration.
+There is no additional configuration.
 
 ## Related stuff
 Project J.A.I.son: https://github.com/limitcantcode/jaison-core
